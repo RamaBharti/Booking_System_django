@@ -1,0 +1,216 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous" defer></script>
+
+
+    {% block head %}
+    {% endblock %}
+  </head>
+  <body>
+    <header>
+        <nav class="navbar bg-white navbar-white navbar-expand-lg shadow-sm">
+            <div class="container-fluid">
+                <img src="https://images.squarespace-cdn.com/content/v1/59364d66ebbd1a96fde735c3/1568631726434-4TTZXMLVTJNYN7R17HH8/TRANSPARENT+iitd+logo.png" alt="iitd" width="50" height="50">
+                <a class="navbar-brand  cHover cGreen fs-2" href="{% url 'index' %}">
+                      Department of Mathematics IIT Delhi
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mb-2 mb-lg-0  fs-5">
+                        <li class="nav-item">
+                            <a class="nav-link active cHover" aria-current="page" href="{% url 'index' %}">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active cHover" href="#contact">Contact Us</a>
+                        </li>     
+                        <li class="nav-item">
+                            <a class="nav-link active cHover" href="{% url 'booking' %}">Online Booking</a>
+                        </li>    
+                        <!--only admin can access the admin page.-->               
+                        {% if user.is_authenticated %}
+                        <!--Professors Link-->
+                        <li class="nav-item">
+                            <a class="nav-link active cHover" href="{% url 'adminPanel' %}">Admin Panel</a>
+                        </li> 
+                        <li class="nav-item dropdown me-3 fs-5">
+                            <a class="nav-link active dropdown-toggle cHover" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                              User
+                            </a>
+                            <ul class="dropdown-menu  border zNav">
+                              <li><a class="dropdown-item" href="{% url 'userPanel' %}">User Panel</a></li>
+                              <li><hr class=""></li>
+                              <li><a class="dropdown-item" href="{% url 'logout' %}">Sign Out</a></li>
+                            </ul>
+                        </li>
+                        {% else %}
+                        <li class="nav-item me-3">
+                            <a class="nav-link active cHover" href="{% url 'register' %}">Sign in/Sign Up</a>
+                        </li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        
+
+        <!--Messages Start-->
+        {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-success  alert-dismissible fade show text-center " role="alert">
+                <h3 class="display-3">{{ message }}</h3>
+                <button type="button" class="btn-close fs-1 position-absolute top-50 start-0 translate-middle-y" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endfor %}
+        {% endif %}
+        <!--Messages End-->
+
+    </header>
+
+
+    {% block body %}
+    {% endblock %}
+    <footer class="bg-dark text-white">
+        <div class="container-fluid pt-3">
+            <section class="">
+                <div class="container text-center text-md-start mt-5">
+                  <!-- Grid row -->
+                  <div class="row mt-3 text-center">
+            
+                    <!-- Grid column -->
+                    <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+                        <!-- Links -->
+                        <h5 class="text-uppercase fw-bold mb-4 textGradient" id="contact">
+                            Contact Us
+                        </h5>
+                        <p>
+                            <a href="Office Phone: 2659 1471
+
+                            " class=""><span class="cBlue">Office Phone: 2659 1471
+
+                            </span></a>
+                        </p>
+                        <p>
+                            <a class="uLine cHover" href="{% url 'booking' %}" >Online Booking</a>
+                        </p>
+                    </div>
+                    <!-- Grid column -->
+                    
+                    <!-- professors links Regular -->
+                    <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+                        <!-- Links -->
+                        <h5 class="text-uppercase fw-bold mb-4 textGradient">
+                            Professors
+                        </h5>
+                        <p>
+                            <a href="#!" class="uLine">Biplab Basak</a>
+                        </p>
+                        <p>
+                            <a href="#!" class="uLine">Niladri Chatterjee</a>
+                        </p>
+                        <p>
+                            <a href="#!" class="uLine">Aparajita Dasgupta</a>
+                        </p>
+                        <p>
+                            <a href="#!" class="uLine">Minati De</a>
+                        </p>
+                        <p>
+                            <a href="#!" class="uLine">S. Dharmaraja</a>
+                        </p>
+                        <p>
+                            <a href="#!" class="uLine">Debdip Ganguly</a>
+                        </p>
+                        <p>
+                            <a href="#!" class="uLine">Surjeet Kaur</a>
+                        </p>
+                        <p>
+                            <a href="#!" class="uLine">Harish Kumar</a>
+                        </p>
+                        <p>
+                            <a href="#!" class="uLine">N. Shravan Kumar</a>
+                        </p>
+                        <p>
+                            <a href="#!" class="uLine">V. V. K. Srinivas Kumar</a>
+                        </p>
+                        <p>
+                            <a href="#!" class="uLine">Anant Kumar Majee</a>
+                        </p>
+                        <p>
+                            <a href="#!" class="uLine">Aparna Mehra</a>
+                        </p>
+                        <p>
+                            <a href="#!" class="uLine">Mani Mehra</a>
+                        </p>
+                        <p>
+                            <a href="#!" class="uLine">Vivek Mukundan</a>
+                        </p>
+                        <p>
+                            <a href="#!" class="uLine">Anima Nagar</a>
+                        </p>
+                        <p>
+                            <a href="#!" class="uLine">B.S. Panda</a>
+                        </p>
+                        <p>
+                            <a href="#!" class="uLine">Shiv Prakash Patel</a>
+                        </p>
+                        <p>
+                            <a href="#!" class="uLine">Kamana Porwal</a>
+                        </p>
+                        <p>
+                            <a href="#!" class="uLine">Amit Priyadarshi</a>
+                        </p>
+                        <p>
+                            <a href="#!" class="uLine">Ashutosh Rai</a>
+                        </p>
+                        <p>
+                            <a href="#!" class="uLine">S.C.S. Rao</a>
+                        </p>
+                        <p>
+                            <a href="#!" class="uLine">Biswajyoti Saha</a>
+                        </p>
+                        <p>
+                            <a href="#!" class="uLine">Ekata Saha</a>
+                        </p>
+                        <p>
+                            <a href="#!" class="uLine">Sivananthan Sampath</a>
+                        </p>
+                        <p>
+                            <a href="#!" class="uLine">Ritumoni Sarma</a>
+                        </p>
+                        <p>
+                            <a href="#!" class="uLine">Punit Sharma</a>
+                        </p>
+                        <p>
+                            <a href="#!" class="uLine">Rajendra Kumar Sharma</a>
+                        </p>
+                        <p>
+                            <a href="#!" class="uLine">Vikas Vikram Singh</a>
+                        </p>
+                        <p>
+                            <a href="#!" class="uLine">K. Sreenadh</a>
+                        </p>
+                        <p>
+                            <a href="#!" class="uLine">Amitabha Tripathi</a>
+                        </p>
+                        <p>
+                            <a href="#!" class="uLine">Viswanathan Puthan Veedu</a>
+                        </p>
+                    </div>
+                    <!-- Professors links Regular -->
+                  </div>
+                  <!-- Grid row -->
+                </div>
+              </section>
+        </div>
+    </footer>
+  </body>
+</html>

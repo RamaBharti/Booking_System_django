@@ -1,0 +1,91 @@
+<title>Edit Appointment</title>
+{% extends 'layout.html' %}
+{% load static %}
+{% block body %}
+
+
+
+
+{% if user.is_authenticated %}
+<!--if 24hrs before nobat-->
+{% if delta24 == True %}
+<h1 class="text-center  mt-3">Edit Appointment</h1>
+
+<div class="shadow p-4 mb-5 bg-body bg-body rounded text-black  m-5 ">
+    <form method="post" action="{% url 'userUpdate' id %}" class="me-2 ms-2" required>
+        {% csrf_token %}
+
+        <!--input professors-->
+        <div>
+            <h3 class="">Select Professor:</h3>
+            <select class="form-select fs-3" name="professors">
+                <option value="Biplab Basak">Biplab Basak</option>
+                <option value="Niladri Chatterjee">Niladri Chatterjee</option>
+                <option value="Aparajita Dasgupta">Aparajita Dasgupta</option>
+                <option value="Minati De">Minati De</option>
+                <option value="S. Dharmaraja">S. Dharmaraja</option>
+                <option value="Dedip Ganguly">Dedip Ganguly</option>
+                <option value="Surjeet Kaur">Surjeet Kaur</option>
+                <option value="Harish Kumar">Harish Kuma</option>
+                <option value="N. Shravan Kumar">N. Shravan Kumar</option>
+                <option value="V.V.K. Srinivas Kumar">V.V.K. Srinivas Kumar</option>
+                <option value="Anant Kumar Majee">Anant Kumar Majee</option>
+                <option value="Aparna Mehra">Aparna Mehra</option>
+                <option value="Mani Mehra">Mani Mehra</option>
+                <option value="Vivek Mukundan">Vivek Mukundan</option>
+                <option value="Anima Nagar">Anima Nagar</option>
+                <option value="B.S. Panda">B.S. Panda</option>
+                <option value="Shiv Prakash Patel">Shiv Prakash Patel</option>
+                <option value="Kamana Porwal">Kamana Porwal</option>
+                <option value="Amit Priyadarshi">Amit Priyadarshi</option>
+                <option value="Ashutosh Rai">Ashutosh Rai</option>
+                <option value="S.C.S. Rao">S.C.S. Rao</option>
+                <option value="Biswajyoti Saha">Biswajyoti Saha</option>
+                <option value="Ekata Saha">Ekata Saha</option>
+                <option value="Sivananthan Sampath">Sivananthan Sampath</option>
+                <option value="Ritumoni Sarma">Ritumoni Sarma</option>
+                <option value="Punit Sharma">Punit Sharma</option>
+                <option value="Rajendra Kumar Sharma">Rajendra Kumar Sharma</option>
+                <option value="Vikas Vikram Singh">Vikas Vikram Singh</option>
+                <option value="K. Sreenadh">K. Sreenadh</option>
+                <option value="Amitabha Tripathi">Amitabha Tripathi</option>
+                <option value="Viswanathan Puthan Veedu">Viswanathan Puthan Veedu</option>
+            </select>
+        </div>
+            <!--input day-->
+            <div class="mt-3">
+                <h3 class="">Select Day:</h3>
+                <select class="form-select fs-3" name="day">
+                    {% for validateWeekday in validateWeekdays %}
+                    <option value="{{validateWeekday}}">{{validateWeekday}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <br/>
+            <button type="submit" class="btn btn-primary text-white">Continue</button>
+        </div>
+    </form>
+</div>
+<!--else if its 24hrs before editing-->
+{% else %}
+
+<div class="shadow p-4 mb-5 bg-body bg-body rounded text-black m-5 text-center fPersian">
+    <h1 class="text-danger">Editing Appointments Is Only Available 24hrs Before Appointment!</h1>
+    <a href="{% url 'userPanel' %}" class="btn btn-primary mt-5">Return To User Panel</a>
+</div>
+
+{% endif %}
+
+
+{% else %}
+
+<div class="shadow p-4 mb-5 bg-body bg-body rounded text-black  m-5 ">
+    <h1 class="p-2  me-3">You Are Not Signed in!</h1>
+    <a href="{% url 'register' %}" class="btn btn-primary shadow text-center">Sign in</a>
+</div>
+
+{% endif %}
+
+
+{% endblock %}
