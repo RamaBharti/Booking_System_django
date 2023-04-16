@@ -236,7 +236,7 @@ def validWeekday(days):
 def isWeekdayValid(x):
     validateWeekdays = []
     for j in x:
-        if Appointment.objects.filter(day=j).count() < 10:
+        if Appointment.objects.filter(day=j).count() < 10: #16
             validateWeekdays.append(j)
     return validateWeekdays
 
